@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  medicine-redis:
+    container_name: medicine-redis
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: jungjihyeon/medicine-redis
+    ports:
+      - "6379:6379"
+
+  medicine-database:
+    container_name: medicine-database
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: jungjihyeon/medicine-database
+    environment:
+      - MARIADB_DATABASE=medicine
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+
