@@ -26,4 +26,8 @@ public class Medicine {
     private String medicineNumber;
     private double latitude;
     private double longitude;
+
+    public void changeMedicineAddress(String address) {
+        this.medicineAddress = address;
+    }
 }
