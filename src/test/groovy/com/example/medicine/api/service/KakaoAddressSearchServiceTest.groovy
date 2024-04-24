@@ -32,5 +32,26 @@ class KakaoAddressSearchServiceTest extends AbstractIntegrationContainerBaseTest
         result.documentList.get(0).addressName != null
     }
 
+    def "정상적인 주소를 입력했을 경우, 정상적으로 위도 및 경도로 변환 된다."() {
+        given:
+        boolean actualResult = false
+
+        when:
+        def searchResult = kakaoAddressSearchService.requestAddressSearch(inputAddress)
+
+        then:
+        if (searchResult == null) actualResult = false
+        else actualResult = searchResult.getDocumentList().size() > 0
+
+        where:
+        inputAddress                     | expectedResult
+        "경기도 의정부시 시민로122번길"       | true
+        "경기도 의정부시 태평로108번길 19"    | true
+        "경기도 의정부시 서부로"             | true
+        "서울 노원구 상계동"                | false
+        "서울 노원구 상계동 211"            | false
+        ""                               | false
+    }
+
 
 }
