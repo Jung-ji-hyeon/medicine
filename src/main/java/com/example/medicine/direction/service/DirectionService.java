@@ -46,6 +46,7 @@ public class DirectionService {
                                 .inputLatitude(documentDto.getLatitude())
                                 .inputLongitude(documentDto.getLongitude())
                                 .targetMedicineName(medicineDto.getMedicineName())
+                                .targetMedicineNumber(medicineDto.getMedicineNumber())
                                 .targetAddress(medicineDto.getMedicineAddress())
                                 .targetLatitude(medicineDto.getLatitude())
                                 .targetLongitude(medicineDto.getLongitude())

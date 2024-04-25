@@ -31,6 +31,7 @@ CREATE TABLE `direction` (
                              `input_latitude` double NOT NULL,
                              `input_longitude` double NOT NULL,
                              `target_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                             `target_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
                              `target_latitude` double NOT NULL,
                              `target_longitude` double NOT NULL,
                              `target_medicine_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

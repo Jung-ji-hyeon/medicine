@@ -45,12 +45,12 @@ public class MedicineRecommendService {
 
     private OutputDto convertToOutputDto(Direction direction) {
         return OutputDto.builder()
+                .medicineName(direction.getTargetMedicineName())
                 .medicineAddress(direction.getTargetAddress())
                 .medicineNumber(direction.getTargetMedicineNumber())
-                .medicineName(direction.getTargetMedicineName())
                 .directionUrl("")
                 .roadViewUrl("")
-                .distance(String.format("%.3f KM", direction.getDistance()))
+                .distance(String.format("%.2f KM", direction.getDistance()))
                 .build();
     }
 }
