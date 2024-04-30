@@ -1,5 +1,6 @@
 package com.example.medicine.medicine.service;
 
+import com.example.medicine.medicine.cache.MedicineRedisTemplateService;
 import com.example.medicine.medicine.dto.MedicineDto;
 import com.example.medicine.medicine.entity.Medicine;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,13 @@ import java.util.stream.Collectors;
 public class MedicineSearchService {
 
     private final MedicineRepositoryService medicineRepositoryService;
+    private final MedicineRedisTemplateService medicineRedisTemplateService;
 
     public List<MedicineDto> searchMedicineDtoList() {
+
+        // redis
+        List<MedicineDto> medicineDtoList = medicineRedisTemplateService.findAll();
+        if (!medicineDtoList.isEmpty()) return medicineDtoList;
 
         // db
         return medicineRepositoryService.findAll()
