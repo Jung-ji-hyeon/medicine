@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  medicine-redis:
+    container_name: medicine-redis
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: jungjihyeon/medicine-redis
+    ports:
+      - "6379:6379"
+
+  medicine-database:
+    container_name: medicine-database
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: jungjihyeon/medicine-database
+    environment:
+      - MARIADB_DATABASE=medicine
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  medicine-app:
+    container_name: medicine-app
+    build: .
+    depends_on:
+      - medicine-database
+      - medicine-redis
+    image: jungjihyeon/medicine-app
+    environment:
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - KAKAO_REST_API_KEY=${KAKAO_REST_API_KEY}
+    ports:
+      - "80:8080"
+    restart: always

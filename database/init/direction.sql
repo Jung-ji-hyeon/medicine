@@ -35,6 +35,7 @@ CREATE TABLE `direction` (
                              `target_latitude` double NOT NULL,
                              `target_longitude` double NOT NULL,
                              `target_medicine_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                             `target_medicine_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
                              PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
