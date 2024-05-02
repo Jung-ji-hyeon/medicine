@@ -63,7 +63,7 @@ spring:
 medicine:
   recommendation:
     base:
-      url: http://localhost/dir/
+      url: http://43.203.77.251/dir/
 
 
 
